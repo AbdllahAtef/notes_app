@@ -9,8 +9,8 @@ class CustomAppBar extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-         Text('Notes', style: TextStyle(color: Colors.white, fontSize: 28)),
-         CustomSearchIcon(),
+        Text('Notes', style: TextStyle(color: Colors.white, fontSize: 28)),
+        CustomSearchIcon(),
       ],
     );
   }
