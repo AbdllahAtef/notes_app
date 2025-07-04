@@ -14,7 +14,7 @@ class EditViewBody extends StatelessWidget {
           CustomAppBar(icon: Icons.check, title: 'Edit Note'),
           SizedBox(height: 32),
           CustomTextField(hint: 'Title', maxLines: 1),
-          SizedBox(height: 32),
+          SizedBox(height: 16),
           CustomTextField(hint: 'Content', maxLines: 5),
         ],
       ),
