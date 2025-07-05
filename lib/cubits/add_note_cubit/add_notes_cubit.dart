@@ -21,7 +21,7 @@ class AddNotesCubit extends Cubit<AddNotesState> {
       emit(AddNotesSuccess());
     } catch (e) {
 
-      AddNotesFailure(errorMessage: e.toString());
+     emit( AddNotesFailure(errorMessage: e.toString()));
       // TODO
     }
   }
