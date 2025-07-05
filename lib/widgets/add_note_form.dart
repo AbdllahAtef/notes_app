@@ -7,17 +7,18 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 
-
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
 
   @override
   State<AddNoteForm> createState() => _AddNoteFormState();
 }
+
 class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, content;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -40,17 +41,27 @@ class _AddNoteFormState extends State<AddNoteForm> {
             maxLines: 5,
           ),
           const SizedBox(height: 82),
-          CustomButton(
-            ontap: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                // ignore: non_constant_identifier_names
-                var Notemodel = NoteModel(title: title!, subtitle: content!, createdAt: DateTime.now().toString(), color: Colors.blueAccent.value);
-                BlocProvider.of<AddNotesCubit>(context).addNote(Notemodel);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
+          BlocBuilder<AddNotesCubit, AddNotesState>(
+            builder: (context, state) {
+              return CustomButton(
+                isloading: state is AddNotesLoading ? true : false,
+                ontap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    // ignore: non_constant_identifier_names
+                    var Notemodel = NoteModel(
+                      title: title!,
+                      subtitle: content!,
+                      createdAt: DateTime.now().toString(),
+                      color: Colors.blueAccent.value,
+                    );
+                    BlocProvider.of<AddNotesCubit>(context).addNote(Notemodel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              );
             },
           ),
         ],
@@ -58,4 +69,3 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
-
