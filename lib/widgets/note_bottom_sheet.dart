@@ -24,6 +24,7 @@ class NoteBottomSheet extends StatelessWidget {
             absorbing: state is AddNotesLoading ? true : false,
             child: Padding(
               padding: EdgeInsets.only(
+                top: 32.0,
                 left: 16.0,
                 right: 16.0,
                 bottom: MediaQuery.of(context).viewInsets.bottom,
