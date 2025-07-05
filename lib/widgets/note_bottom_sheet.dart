@@ -18,6 +18,7 @@ class NoteBottomSheet extends StatelessWidget {
             Navigator.pop(context);
           }
           if (state is AddNotesFailure) {
+            // ignore: avoid_print
             print('failed due to ${state.errorMessage}');
           }
         },
