@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+
 class CustomButton extends StatelessWidget {
    const CustomButton({super.key, this.ontap,  this.isloading =false});
  final void Function()? ontap;
