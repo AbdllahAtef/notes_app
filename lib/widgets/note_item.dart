@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
-
+   const NoteItem({super.key, required this.note});
+ final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -14,24 +15,24 @@ class NoteItem extends StatelessWidget {
         );
       },
       child: Container(
-        padding: const EdgeInsets.only(top: 24.0, left: 16.0, bottom: 24),
+        padding:  const EdgeInsets.only(top: 24.0, left: 16.0, bottom: 24),
         decoration: BoxDecoration(
-          color: Colors.orangeAccent.shade100,
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: Column(
           children: [
             ListTile(
-              title: const Text(
-                'Flutter Tips',
-                style: TextStyle(color: Colors.black, fontSize: 26),
+              title: Text(
+                note.title,
+                style: const TextStyle(color: Colors.black, fontSize: 26),
               ),
 
-              subtitle: const Padding(
-                padding: EdgeInsets.only(top: 16.0, bottom: 16),
+              subtitle:  Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                 child: Text(
-                  'Build apps faster with Flutter Tips and Tricks.',
-                  style: TextStyle(color: Colors.black45, fontSize: 18),
+                  note.subtitle,
+                  style: const TextStyle(color: Colors.black45, fontSize: 18),
                 ),
               ),
               trailing: IconButton(
@@ -39,11 +40,11 @@ class NoteItem extends StatelessWidget {
                 onPressed: () {},
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 170),
+             Padding(
+              padding: const EdgeInsets.only(left: 170),
               child: Text(
-                'may 23, 2023',
-                style: TextStyle(color: Colors.black45, fontSize: 16),
+                note.createdAt,
+                style: const TextStyle(color: Colors.black45, fontSize: 16),
               ),
             ),
           ],
