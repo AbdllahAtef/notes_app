@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/color_list.dart';
 import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
 import 'package:intl/intl.dart';
-
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -42,7 +42,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
             hint: 'Content',
             maxLines: 5,
           ),
-          const SizedBox(height: 82),
+          const SizedBox(height: 32),
+          const ColorList(),
+          const SizedBox(height: 32),
           BlocBuilder<AddNotesCubit, AddNotesState>(
             builder: (context, state) {
               return CustomButton(
@@ -54,7 +56,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     var Notemodel = NoteModel(
                       title: title!,
                       subtitle: content!,
-                      createdAt:  DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
+                      createdAt:
+                          DateFormat(
+                            'yyyy-MM-dd',
+                          ).format(DateTime.now()).toString(),
                       color: Colors.blueAccent.value,
                     );
                     BlocProvider.of<AddNotesCubit>(context).addNote(Notemodel);
@@ -71,3 +76,5 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
+
+
